@@ -164,7 +164,7 @@ export default function Register() {
             borderRadius: 1,
           }}
         >
-          <Typography component="h1" variant="h5" margin="5px" mb="30px">
+          <Typography component="h1" variant="h5" margin="5px" mb="30px' fontFamily='calistoga">
             Please Fill Out Form to Register!
           </Typography>
 
