@@ -123,19 +123,20 @@ export default function Login() {
             borderRadius: 1,
           }}
         >
-          <Typography component="h1" variant="h5" padding="20px" margin="10px' fontFamily='calistoga">
+          <Typography component="h1" variant="h5" sx={{ padding: '20px', margin: '10px', fontFamily:'Calistoga'}}>
             Welcome Back!
           </Typography>
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
             }}
           >
+
             <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel htmlFor="username">Username</FormLabel>
+              <FormLabel htmlFor="username" sx={{fontFamily:'Calistoga'}}>Username</FormLabel>
               <OutlinedInput
                 id="username"
                 autoComplete="username"
@@ -151,7 +152,7 @@ export default function Login() {
           </Box>
           <Box sx={{ display: "flex", width: "100%", padding: "10px" }}>
             <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password" sx={{fontFamily:'Calistoga'}}>Password</FormLabel>
               <OutlinedInput
                 id="password"
                 autoComplete="password"
@@ -186,7 +187,7 @@ export default function Login() {
               justifyContent: "flex-start",
             }}
           >
-            <FormControlLabel
+            <FormControlLabel sx={{fontFamily:'Calistoga'}}
               control={<Checkbox name="saveInfo" />}
               label="Remember me"
             />
@@ -204,6 +205,7 @@ export default function Login() {
               "&:hover": {
                 backgroundColor: "#14506E",
               },
+             fontFamily:'Calistoga'
             }}
             onClick={handleSubmit}
           >
@@ -225,14 +227,14 @@ export default function Login() {
             </Stack>
           )}
           <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
+            <Typography sx={{fontFamily:'Calistoga'}}> 
+              <Link to="/PasswordReset">Forgot Password?</Link>
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography>
+            <Typography sx={{fontFamily:'Calistoga'}}>
               Don't have an account?
-              <Link to="./Register">Register here</Link>
+              <Link to="/Register"> Register here</Link>
             </Typography>
           </Grid>
         </Box>
