@@ -1,5 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Typography from "@mui/material/Typography";
@@ -20,45 +22,25 @@ const FormGrid = styled("div")(() => ({
   flexDirection: "column",
 }));
 
-const isEmail = (email) =>
-  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-
-export default function Register() {
+export default function Password() {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
   // Input
-  const [fullName, setfullName] = React.useState("");
   const [userName, setUserName] = React.useState("");
-  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
   //   const handleUsername = (event) => {};
 
-  // Input Error
-  const [emailError, setEmailError] = React.useState(false);
+  // Input error
+  const [usernameError, setUsernameError] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = React.useState(false);
 
   // Form validity
   const [formValid, setFormValid] = React.useState();
   const [success, setSuccess] = React.useState();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
-
-  const handleEmail = () => {
-    console.log(isEmail(email));
-    if (!isEmail(email)) {
-      setEmailError(true);
-      return;
-    }
-
-    setEmailError(false);
   };
 
   const handlePassword = () => {
@@ -68,15 +50,6 @@ export default function Register() {
     }
 
     setPasswordError(false);
-  };
-
-  const handleConfirmPassword = () => {
-    if (password !== confirmPassword) {
-      setConfirmPasswordError(true);
-      return;
-    }
-
-    setConfirmPasswordError(false);
   };
 
   const handleSubmit = () => {
@@ -91,12 +64,6 @@ export default function Register() {
     //     return;
     //   }
 
-    // If Email error is true
-    if (emailError || !email) {
-      setFormValid("Email is Invalid. Please Re-Enter");
-      return;
-    }
-
     // If Password error is true
     if (passwordError || !password) {
       setFormValid(
@@ -105,18 +72,10 @@ export default function Register() {
       return;
     }
 
-    if (confirmPasswordError || !confirmPassword) {
-      setFormValid("Password does not match. Please Re-Enter");
-      return;
-    }
     setFormValid(null);
-
     // Proceed to use the information passed
-    console.log("Full Name : " + fullName);
     console.log("Username : " + userName);
-    console.log("Email : " + email);
     console.log("Password : " + password);
-    console.log("Confirm Password : " + confirmPassword);
 
     //Show Successfull Submittion
     setSuccess("Form Submitted Successfully");
@@ -145,8 +104,8 @@ export default function Register() {
         md={4}
         elevation={4}
         sx={{
-          height: "738px",
-          width: "489px",
+          height: "479px",
+          width: "479px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -164,38 +123,23 @@ export default function Register() {
             borderRadius: 1,
           }}
         >
-          <Typography component="h1" variant="h5" sx={{ margin: '5px', mb: '30px', fontFamily:'Calistoga'}}>
-            Please Fill Out Form to Register!
+          <Typography component="h1" variant="h5" sx={{ padding: '20px', margin: '10px', fontFamily:'Calistoga', color:'white'}}>
+            Edusys
           </Typography>
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
             }}
           >
+
             <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel sx={{ fontFamily:'Calistoga'}}>Full Name</FormLabel>
+              <FormLabel htmlFor="password" sx={{fontFamily:'Calistoga'}}>Password</FormLabel>
               <OutlinedInput
-                id="fullName"
-                autoComplete="fullName"
-                placeholder=""
-                required
-                value={fullName}
-                onChange={(event) => {
-                  setfullName(event.target.value);
-                }}
-                sx={{ backgroundColor: "white", width: "100%" }}
-              />
-            </FormGrid>
-          </Box>
-          <Box sx={{ display: "flex", width: "100%", padding: "10px" }}>
-            <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel sx={{ fontFamily:'Calistoga'}}>Username</FormLabel>
-              <OutlinedInput
-                id="username"
-                autoComplete="username"
+                id="password"
+                autoComplete="password"
                 placeholder=""
                 required
                 value={userName}
@@ -208,28 +152,10 @@ export default function Register() {
           </Box>
           <Box sx={{ display: "flex", width: "100%", padding: "10px" }}>
             <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel sx={{ fontFamily:'Calistoga'}}>Email</FormLabel>
+              <FormLabel htmlFor="password" sx={{fontFamily:'Calistoga'}}>Confirm Password</FormLabel>
               <OutlinedInput
-                id="Email"
-                autoComplete="Email"
-                placeholder=""
-                required
-                value={email}
-                error={emailError}
-                onBlur={handleEmail}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-                sx={{ backgroundColor: "white", width: "100%" }}
-              />
-            </FormGrid>
-          </Box>
-          <Box sx={{ display: "flex", width: "100%", padding: "10px" }}>
-            <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel sx={{ fontFamily:'Calistoga'}}>Password</FormLabel>
-              <OutlinedInput
-                id="password"
-                autoComplete="password"
+                id="Confirmpassword"
+                autoComplete="Confirmpassword"
                 placeholder=""
                 required
                 value={password}
@@ -254,36 +180,6 @@ export default function Register() {
               />
             </FormGrid>
           </Box>
-          <Box sx={{ display: "flex", width: "100%", padding: "10px" }}>
-            <FormGrid sx={{ flexGrow: 1 }}>
-              <FormLabel sx={{ fontFamily:'Calistoga'}}>Confirm Password</FormLabel>
-              <OutlinedInput
-                id="confirmPassword"
-                autoComplete="confirmPassword"
-                placeholder=""
-                required
-                value={confirmPassword}
-                error={confirmPasswordError}
-                onBlur={handleConfirmPassword}
-                type={showConfirmPassword ? "text" : "password"}
-                onChange={(event) => {
-                  setConfirmPassword(event.target.value);
-                }}
-                sx={{ backgroundColor: "white", width: "100%" }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowConfirmPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormGrid>
-          </Box>
           <Button
             type="submit"
             fullWidth
@@ -297,11 +193,11 @@ export default function Register() {
               "&:hover": {
                 backgroundColor: "#14506E",
               },
-              fontFamily:'Calistoga'
+             fontFamily:'Calistoga'
             }}
             onClick={handleSubmit}
           >
-            Register
+            Reset Password
           </Button>
           {formValid && (
             <Stack sx={{ width: "100%", paddingTop: "10px" }} spacing={2}>
@@ -319,9 +215,9 @@ export default function Register() {
             </Stack>
           )}
           <Grid item>
-            <Typography sx={{ fontFamily:'Calistoga'}}>
-              I have an account
-              <Link to="/Login"> Login</Link>
+            <Typography sx={{fontFamily:'Calistoga'}}>
+              Don't have an account?
+              <Link to="/Register"> Register here</Link>
             </Typography>
           </Grid>
         </Box>
